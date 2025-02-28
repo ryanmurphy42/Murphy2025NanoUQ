@@ -44,8 +44,8 @@ Code is included to reproduce results for the synthetic data studies and the exp
 |2| R5 | Experimental | 214 nm PMA-capsules with THP-1 cells |
 |3| R6 | Experimental | 633 nm PMA core-shell particles with THP-1 cells |
 |4| S1 | Synthetic | Based on data in R1 |
-|5| S5 | Synthetic | Low r (relative to K) |
-|6| S7 | Synthetic | Intermediate r (relative to K) |
+|5| S7 | Synthetic | Low r (relative to K) |
+|6| S5 | Synthetic | Intermediate r (relative to K) |
 |7| S9 | Synthetic | High r (relative to K) |
 
 
