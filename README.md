@@ -15,9 +15,9 @@ Code developed and run in Jan 2025 using:
 ## Data
 
 Data is available for the following particle-cell pairs via  Faria M et al. (2019). Revisiting cell–particle association in vitro: A quantitative method to compare particle performance. Journal of Controlled Release. 307, 355–367. (https://doi.org/10.1016/j.jconrel.2019.06.027).
-- 150 nm polymethacrylic acid(PMA) core-shell particles
-- 214 nm PMA-capsules
-- 633 nm PMA core-shell particles
+- 150 nm polymethacrylic acid(PMA) core-shell particles with THP-1 cells.
+- 214 nm PMA-capsules with THP-1 cells.
+- 633 nm PMA core-shell particles with THP-1 cells.
 
 ## Guide to using the code
 
