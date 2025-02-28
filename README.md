@@ -25,7 +25,7 @@ We focus on data for the following particle-cell pairs.
 
 ### Synthetic data.
 We generate synthetic data using the following code:
-| | Filname      | Description           | 
+| | Filename      | Description           | 
 | :---:    | :---: | :---: |
 |1| S01_genrate_syntheticdata | Based on data in R1 |
 |2| S05_genrate_syntheticdata  | Low r (relative to K) |
