@@ -64,7 +64,7 @@ Each of these Code_ID's are associated with the following files (where xx repres
 |9| xxKS_Inference | ABC-SMC algorithm  | Kolmogorov-Smirnov  | Target acceptance probability |
 |10| xxKS_ABCE_Inference |  ABC-SMC algorithm |  Kolmogorov-Smirnov | Target acceptance threshold |
 
-Code for the ABC-SMC algorithm (from https://github.com/ap-browning/internalisation), together with the homogeneous mathematical model and heterogeneous mathematical model are included in the following Modules:
+Code for the ABC-SMC algorithm (adapted from https://github.com/ap-browning/internalisation), together with the homogeneous mathematical model and heterogeneous mathematical model are included in the following Modules:
 | | Module       | Filename | Description | 
 | :---:   | :---: | :---: | :---: |
 |1| Model | Model | Header file for Model module   | 
