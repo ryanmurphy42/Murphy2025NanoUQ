@@ -14,6 +14,7 @@ Code developed and run in Jan 2025 using:
 
 ## Data
 
+# Experimental data 
 We analyse previously published from Faria M et al. (2019). Revisiting cell–particle association in vitro: A quantitative method to compare particle performance. Journal of Controlled Release. 307, 355–367. (https://doi.org/10.1016/j.jconrel.2019.06.027) available on FigShare (https://figshare.com/articles/dataset/FCS_and_INI_files/7623671). This includes fluorescence data from Flow Cytometry Standard (FCS) files and experimental details from INI files. Raw FCS data files were converted to CSV using https://floreada.io/.
 
 We focus on data for the following particle-cell pairs.
@@ -22,6 +23,15 @@ We focus on data for the following particle-cell pairs.
 - 633 nm PMA core-shell particles with THP-1 cells.
 
 
+# Synthetic data.
+We generate synthetic data using the following code:
+| | Filname      | Description           | 
+| :---:    | :---: | :---: |
+|1| S01_genrate_syntheticdata | Based on data in R1 |
+|1| S05_genrate_syntheticdata  | Low r (relative to K) |
+|1| S07_genrate_syntheticdata  | Intermediate r (relative to K) |
+|1| S09_genrate_syntheticdata  | High r (relative to K) |
+
 ## Code
 
 Code is included to reproduce results for the synthetic data studies and the experimental data studies.
@@ -29,12 +39,12 @@ Code is included to reproduce results for the synthetic data studies and the exp
 | | Code_ID       | Synthetic/Experimental | Description           | 
 | :---:   | :---: | :---: | :---: |
 |1| R1 | Experimental | 150 nm PMA core-shell particles with THP-1 cells |
-|1| R5 | Experimental | 214 nm PMA-capsules with THP-1 cells |
-|1| R6 | Experimental | 633 nm PMA core-shell particles with THP-1 cells |
-|1| S1 | Synthetic | Based on data in R1 |
-|1| S5 | Synthetic | Low r (relative to K) |
-|1| S7 | Synthetic | Intermediate r (relative to K) |
-|1| S9 | Synthetic | High r (relative to K) |
+|2| R5 | Experimental | 214 nm PMA-capsules with THP-1 cells |
+|3| R6 | Experimental | 633 nm PMA core-shell particles with THP-1 cells |
+|4| S1 | Synthetic | Based on data in R1 |
+|5| S5 | Synthetic | Low r (relative to K) |
+|6| S7 | Synthetic | Intermediate r (relative to K) |
+|7| S9 | Synthetic | High r (relative to K) |
 
 
 Each of these Code_ID's are associated with the following files.
@@ -51,5 +61,8 @@ Each of these Code_ID's are associated with the following files.
 |8| xxKS_Setup | Set up file including model, priors, reference to data  |  Kolmogorov-Smirnov | NA |
 |9| xxKS_Inference | ABC-SMC algorithm  | Kolmogorov-Smirnov  | Target acceptance rate |
 |10| xxKS_ABCE_Inference |  ABC-SMC algorithm |  Kolmogorov-Smirnov | Target acceptance threshold |
+
+
+
 
 
