@@ -10,7 +10,7 @@ Code developed and run in Jan 2025 using:
 
 - Julia Version 1.9.3 (see https://julialang.org/downloads/ )
 - Julia packages:
-- Note that the ABC-SMC inference code is adapted from https://github.com/ap-browning/internalisation
+- The ABC-SMC inference code is adapted from https://github.com/ap-browning/internalisation
 
 ## Guide to using the code
 
