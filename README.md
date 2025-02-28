@@ -14,12 +14,15 @@ Code developed and run in Jan 2025 using:
 
 ## Data
 
-Data is available for the following particle-cell pairs via  Faria M et al. (2019). Revisiting cell–particle association in vitro: A quantitative method to compare particle performance. Journal of Controlled Release. 307, 355–367. (https://doi.org/10.1016/j.jconrel.2019.06.027).
+We analyse previously published from Faria M et al. (2019). Revisiting cell–particle association in vitro: A quantitative method to compare particle performance. Journal of Controlled Release. 307, 355–367. (https://doi.org/10.1016/j.jconrel.2019.06.027) available on FigShare (https://figshare.com/articles/dataset/FCS_and_INI_files/7623671). This includes fluorescence data from Flow Cytometry Standard (FCS) files and experimental details from INI files. Raw FCS data files were converted to CSV using https://floreada.io/.
+
+We focus on data for the following particle-cell pairs.
 - 150 nm polymethacrylic acid(PMA) core-shell particles with THP-1 cells.
 - 214 nm PMA-capsules with THP-1 cells.
 - 633 nm PMA core-shell particles with THP-1 cells.
 
-## Guide to using the code
+
+## Code
 
 | | Script        | Figures in manuscript | Short description           | 
 | :---:   | :---: | :---: | :---: |
