@@ -34,6 +34,8 @@ We generate synthetic data using the following code:
 
 ## Code
 
+### Parameter inference, identifiability analysis, and prediction
+
 Code is included to reproduce results for the synthetic data studies and the experimental data studies.
 
 | | Code_ID       | Synthetic/Experimental | Description           | 
@@ -61,6 +63,29 @@ Each of these Code_ID's are associated with the following files (where xx repres
 |8| xxKS_Setup | Set up file including model, priors, reference to data  |  Kolmogorov-Smirnov | NA |
 |9| xxKS_Inference | ABC-SMC algorithm  | Kolmogorov-Smirnov  | Target acceptance probability |
 |10| xxKS_ABCE_Inference |  ABC-SMC algorithm |  Kolmogorov-Smirnov | Target acceptance threshold |
+
+Code for the ABC-SMC algorithm (from https://github.com/ap-browning/internalisation), together with the homogeneous mathematical model and heterogeneous mathematical model are included in the following Modules:
+| | Module       | Filename | Description | 
+| :---:   | :---: | :---: | :---: |
+|1| Model | Model | Header file for Model module   | 
+|2| Model |  deterministic |  Homogeneous mathematical model and approximate solution to heterogeneous model  |
+|3| Model |  statistical |  Heterogeneous model with noise |
+|4| Inference |  Inference | Header file for Inference module  |
+|5| Inference |  abc |  ABC-SMC algorithms |
+|6| Inference |  particles | Implements the type 'Particle' used in ABC-SMC  |
+
+
+Code for plotting
+| | Filename  |  Description | 
+| :---:   | :---: | :---: |
+|1| plots_ABCSMC |  |    
+|2| plots_comparing_ABCdistances |   |  
+
+
+### Experimental design
+
+
+### Verification of the approximate solution to the heterogeneous model
 
 
 
