@@ -26,8 +26,30 @@ We focus on data for the following particle-cell pairs.
 
 Code is included to reproduce results for the synthetic data studies and the experimental data studies.
 
-
-| | Script        | Figures in manuscript | Short description           | 
+| | Code_ID       | Synthetic/Experimental | Description           | 
 | :---:   | :---: | :---: | :---: |
-|1| @@@ | Figure @@ |  |
+|1| R1 | Experimental | 150 nm PMA core-shell particles with THP-1 cells |
+|1| R5 | Experimental | 214 nm PMA-capsules with THP-1 cells |
+|1| R6 | Experimental | 633 nm PMA core-shell particles with THP-1 cells |
+|1| S1 | Synthetic | Based on data in R1 |
+|1| S5 | Synthetic | Low r (relative to K) |
+|1| S7 | Synthetic | Intermediate r (relative to K) |
+|1| S9 | Synthetic | High r (relative to K) |
+
+
+Each of these Code_ID's are associated with the following files.
+
+| | Filename       | Description | ABC distance metric | ABC-SMC algorithm | 
+| :---:   | :---: | :---: | :---: | :---: |
+|1| xx_lesq | Method of least squares using homogeneous model  |  NA | NA |
+|2| xxAD_Setup | Set up file including model, priors, reference to data  |  Anderson-Darling | NA |
+|3| xxAD_Inference | ABC-SMC algorithm  | Anderson-Darling  | Target acceptance rate |
+|4| xxAD_ABCE_Inference |  ABC-SMC algorithm |  Anderson-Darling | Target acceptance threshold |
+|5| xxCV_Setup | Set up file including model, priors, reference to data  |  Cramer von Mises | NA |
+|6| xxCV_Inference | ABC-SMC algorithm  | Cramer von Mises  | Target acceptance rate |
+|7| xxCV_ABCE_Inference |  ABC-SMC algorithm |  Cramer von Mises | Target acceptance threshold |
+|8| xxKS_Setup | Set up file including model, priors, reference to data  |  Kolmogorov-Smirnov | NA |
+|9| xxKS_Inference | ABC-SMC algorithm  | Kolmogorov-Smirnov  | Target acceptance rate |
+|10| xxKS_ABCE_Inference |  ABC-SMC algorithm |  Kolmogorov-Smirnov | Target acceptance threshold |
+
 
