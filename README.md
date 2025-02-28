@@ -24,6 +24,9 @@ We focus on data for the following particle-cell pairs.
 
 ## Code
 
+Code is included to reproduce results for the synthetic data studies and the experimental data studies.
+
+
 | | Script        | Figures in manuscript | Short description           | 
 | :---:   | :---: | :---: | :---: |
 |1| @@@ | Figure @@ |  |
