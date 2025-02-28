@@ -47,7 +47,7 @@ Code is included to reproduce results for the synthetic data studies and the exp
 |7| S9 | Synthetic | High r (relative to K) |
 
 
-Each of these Code_ID's are associated with the following files.
+Each of these Code_ID's are associated with the following files (where xx represents the Code_ID from the above table).
 
 | | Filename       | Description | ABC distance metric | ABC-SMC algorithm | 
 | :---:   | :---: | :---: | :---: | :---: |
