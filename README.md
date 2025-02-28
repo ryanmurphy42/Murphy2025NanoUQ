@@ -28,8 +28,8 @@ We generate synthetic data using the following code:
 | | Filename      | Description           | 
 | :---:    | :---: | :---: |
 |1| S01_generate_syntheticdata | Based on data in R1 |
-|2| S05_generate_syntheticdata  | Low r (relative to K) |
-|3| S07_generate_syntheticdata  | Intermediate r (relative to K) |
+|2| S07_generate_syntheticdata  | Low r (relative to K) |
+|3| S05_generate_syntheticdata  | Intermediate r (relative to K) |
 |4| S09_generate_syntheticdata  | High r (relative to K) |
 
 ## Code
