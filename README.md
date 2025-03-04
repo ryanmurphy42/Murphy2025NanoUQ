@@ -92,6 +92,8 @@ Code is included to reproduce results for the experimental design synthetic data
 |2| intr | Synthetic | Intermediate r (relative to K) |
 |3| highr | Synthetic | High r (relative to K) |
 
+Note that lowr, intr, and highr use different parameter values and are distinct to S5, S7, and S9.
+
 Each of these Code_ID's are associated with the following files (where xx represents the Code_ID from the above table).
 
 | | Filename       | Description | ABC distance metric | ABC algorithm | 
