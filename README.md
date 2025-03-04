@@ -78,8 +78,8 @@ Code for the ABC-SMC algorithm (adapted from https://github.com/ap-browning/inte
 Code for plotting
 | | Filename  |  Description | 
 | :---:   | :---: | :---: |
-|1| plots_ABCSMC |  |    
-|2| plots_comparing_ABCdistances |   |  
+|1| plots_ABCSMC | Plots for posterior densities, inferred distributions, and predictions |    
+|2| plots_comparing_ABCdistances | Plots for comparing results obtained with different ABC distance functions  |  
 
 
 ### Experimental design
@@ -99,6 +99,12 @@ Each of these Code_ID's are associated with the following files (where xx repres
 |1| OPTD_xx_Setup | Set up file including model, priors, reference to data  |  NA | NA |
 |2| OPTD_xx_1A | Pre-simulate synthetic data sets  |  NA | NA |
 |3| OPTD_xx_1B | Perform ABC rejection  |  Anderson-Darling | ABC rejection |
+
+Code for plotting
+| | Filename  |  Description | 
+| :---:   | :---: | :---: |
+|1| OPTD_plots | Plots for comparing experimental designs |    
+
 
 ### Verification of the approximate solution to the heterogeneous model
 
