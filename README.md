@@ -9,7 +9,7 @@ Please contact Ryan Murphy for any queries or questions.
 Code developed and run in Jan 2025 using:
 
 - Julia Version 1.9.3 (see https://julialang.org/downloads/ )
-- Julia packages: Base.Threads, CSV, DataFrames, DataFramesMeta, Distances, Distributions, HypothesisTests, Inference, Interpolations, JLD2, KernelDensity, LaTeXStrings, LinearAlgebra, Model, NLopt, Plots, Printf, Random, Statistics, StatsBase, StatsFuns, StatsPlots, Threads, Trapz
+- Julia packages: Base.Threads, CSV, DataFrames, DataFramesMeta, DifferentialEquations, Distances, Distributions, HypothesisTests, Inference, Interpolations, JLD2, KernelDensity, LaTeXStrings, LinearAlgebra, Model, NLopt, Plots, Printf, Random, Statistics, StatsBase, StatsFuns, StatsPlots, Sundials, Threads, Trapz
 - This code utilises the ABC-SMC inference code from https://github.com/ap-browning/internalisation
 
 ## Data
@@ -110,10 +110,10 @@ Code for plotting
 
 ### Verification of the approximate solution to the heterogeneous model
 
-A1_verifyapproxhetsoln_1
-A1_verifyapproxhetsoln_2
-
-
-
+| | Filename  |  Description | 
+| :---:   | :---: | :---: |
+|1| A1_verifyapproxhetsoln_chosen | Verification for chosen parameter values |   
+|2| A1_verifyapproxhetsoln_abc1 | Compute error for verification using ABC output |   
+|3| A1_verifyapproxhetsoln_abc2 | Plotting error for verification using ABC output |   
 
 
