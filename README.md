@@ -9,7 +9,7 @@ Please contact Ryan Murphy for any queries or questions.
 Code developed and run in Jan 2025 using:
 
 - Julia Version 1.9.3 (see https://julialang.org/downloads/ )
-- Julia packages: Base.Threads, CSV, DataFrames, DataFramesMeta, Distances, Distributions, Inference, Interpolations, JLD2, KernelDensity, LaTeXStrings, LinearAlgebra, Model, NLopt, Plots, Printf, Random, Statistics, StatsBase, StatsFuns, StatsPlots, Threads, Trapz
+- Julia packages: Base.Threads, CSV, DataFrames, DataFramesMeta, Distances, Distributions, HypothesisTests, Inference, Interpolations, JLD2, KernelDensity, LaTeXStrings, LinearAlgebra, Model, NLopt, Plots, Printf, Random, Statistics, StatsBase, StatsFuns, StatsPlots, Threads, Trapz
 - This code utilises the ABC-SMC inference code from https://github.com/ap-browning/internalisation
 
 ## Data
