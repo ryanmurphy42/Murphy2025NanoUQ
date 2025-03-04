@@ -62,7 +62,7 @@ color_avg_rank = RGB(30/255, 144/255, 255/255)
 
 # intermediate r
 save_name = "intr"
-filepath_save = "C:/Users/murphrm/OneDrive - The University of Melbourne/Project1/2CodeFINAL" * "/" * "Results" * "/" * "Files_ExpDesign" * save_name * "/"; # location to save figures 
+filepath_save =  pwd() * "/" * "Results" * "/" * "Files_ExpDesign" * save_name * "/"; # location to save figures 
 isdir(filepath_save) || mkdir(filepath_save); # make folder to save figures if doesnt already exist
 @load filepath_save * "OPTD_1C_all" * ".jld2" ε_comparison_threshold utility_D  utility_mean_D θsim_save_all discrepancy_all  T_design D N  T J
 ε_comparison_threshold_intr = copy(ε_comparison_threshold);
@@ -71,7 +71,7 @@ utility_mean_D_intr = copy(utility_mean_D);
 
 # low r
 save_name = "lowr"
-filepath_save = "C:/Users/murphrm/OneDrive - The University of Melbourne/Project1/2CodeFINAL" * "/" * "Results" * "/" * "Files_ExpDesign" * save_name * "/"; # location to save figures 
+filepath_save = pwd() * "/" * "Results" * "/" * "Files_ExpDesign" * save_name * "/"; # location to save figures 
 isdir(filepath_save) || mkdir(filepath_save); # make folder to save figures if doesnt already exist
 @load filepath_save * "OPTD_1C_all" * ".jld2" ε_comparison_threshold utility_D  utility_mean_D θsim_save_all discrepancy_all  T_design D N  T J
 ε_comparison_threshold_lowr = copy(ε_comparison_threshold);
@@ -80,7 +80,7 @@ utility_mean_D_lowr = copy(utility_mean_D);
 
 # high r
 save_name = "highr"
-filepath_save = "C:/Users/murphrm/OneDrive - The University of Melbourne/Project1/2CodeFINAL" * "/" * "Results" * "/" * "Files_ExpDesign" * save_name * "/"; # location to save figures 
+filepath_save = pwd() * "/" * "Results" * "/" * "Files_ExpDesign" * save_name * "/"; # location to save figures 
 isdir(filepath_save) || mkdir(filepath_save); # make folder to save figures if doesnt already exist
 @load filepath_save * "OPTD_1C_all" * ".jld2" ε_comparison_threshold utility_D  utility_mean_D θsim_save_all discrepancy_all  T_design D N  T J
 ε_comparison_threshold_highr = copy(ε_comparison_threshold);
