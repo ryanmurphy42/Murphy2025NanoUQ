@@ -84,7 +84,21 @@ Code for plotting
 
 ### Experimental design
 
+Code is included to reproduce results for the experimental design synthetic data studies. This follows the ABCDE algorithm (see manuscript).
 
+| | Code_ID       | Synthetic/Experimental | Description           | 
+| :---:   | :---: | :---: | :---: |
+|1| lowr | Synthetic | Low r (relative to K) |
+|2| intr | Synthetic | Intermediate r (relative to K) |
+|3| highr | Synthetic | High r (relative to K) |
+
+Each of these Code_ID's are associated with the following files (where xx represents the Code_ID from the above table).
+
+| | Filename       | Description | ABC distance metric | ABC algorithm | 
+| :---:   | :---: | :---: | :---: | :---: |
+|1| OPTD_xx_Setup | Set up file including model, priors, reference to data  |  NA | NA |
+|2| OPTD_xx_1A | Pre-simulate synthetic data sets  |  NA | NA |
+|3| OPTD_xx_1B | Perform ABC rejection  |  Anderson-Darling | ABC rejection |
 
 ### Verification of the approximate solution to the heterogeneous model
 
