@@ -56,13 +56,15 @@ Each of these Code_ID's are associated with the following files (where xx repres
 |1| xx_lesq | Method of least squares using homogeneous model  |  NA | NA |
 |2| xxAD_Setup | Set up file including model, priors, reference to data  |  Anderson-Darling | NA |
 |3| xxAD_Inference | ABC-SMC algorithm  | Anderson-Darling  | Target acceptance probability |
-|4| xxAD_ABCE_Inference* |  ABC-SMC algorithm |  Anderson-Darling | Target acceptance threshold |
-|5| xxCV_Setup | Set up file including model, priors, reference to data  |  Cramer von Mises | NA |
-|6| xxCV_Inference | ABC-SMC algorithm  | Cramer von Mises  | Target acceptance probability |
-|7| xxCV_ABCE_Inference |  ABC-SMC algorithm |  Cramer von Mises | Target acceptance threshold |
-|8| xxKS_Setup | Set up file including model, priors, reference to data  |  Kolmogorov-Smirnov | NA |
-|9| xxKS_Inference | ABC-SMC algorithm  | Kolmogorov-Smirnov  | Target acceptance probability |
-|10| xxKS_ABCE_Inference |  ABC-SMC algorithm |  Kolmogorov-Smirnov | Target acceptance threshold |
+|4| xxADE_Inference* |  ABC-SMC algorithm |  Anderson-Darling | Target acceptance threshold  (chosen for comparison across data sets) |
+|5| xxAD_ABCE_Inference |  ABC-SMC algorithm |  Anderson-Darling | Target acceptance threshold (chosen for comparison across ABC distances) |
+|6| xxCV_Setup | Set up file including model, priors, reference to data  |  Cramer von Mises | NA |
+|7| xxCV_Inference | ABC-SMC algorithm  | Cramer von Mises  | Target acceptance probability |
+|8| xxCV_ABCE_Inference |  ABC-SMC algorithm |  Cramer von Mises | Target acceptance threshold (chosen for comparison across ABC distances) |
+|9| xxKS_Setup | Set up file including model, priors, reference to data  |  Kolmogorov-Smirnov | NA |
+|10| xxKS_Inference | ABC-SMC algorithm  | Kolmogorov-Smirnov  | Target acceptance probability |
+|11| xxKS_ABCE_Inference |  ABC-SMC algorithm |  Kolmogorov-Smirnov | Target acceptance threshold (chosen for comparison across ABC distances) |
+*For synthetic data studies S1, S5, S7, S9 only.
 
 Code for the ABC-SMC algorithm (adapted from https://github.com/ap-browning/internalisation), together with the homogeneous mathematical model and heterogeneous mathematical model are included in the following Modules:
 | | Module       | Filename | Description | 
@@ -102,10 +104,12 @@ Each of these Code_ID's are associated with the following files (where xx repres
 |2| OPTD_xx_1A | Pre-simulate synthetic data sets  |  NA | NA |
 |3| OPTD_xx_1B | Perform ABC rejection  |  Anderson-Darling | ABC rejection |
 
-Code for plotting
+Code for comparing designs and plotting
 | | Filename  |  Description | 
 | :---:   | :---: | :---: |
-|1| OPTD_plots | Plots for comparing experimental designs |    
+|1| OPTD_1C_computations | Compute ABC error threshold and discrepancy using ABC posteriors with at least 200 samples |    
+|2| OPTD_1D_plots | Compute overall rank and plots comparing experimental designs |    
+
 
 
 ### Verification of the approximate solution to the heterogeneous model
