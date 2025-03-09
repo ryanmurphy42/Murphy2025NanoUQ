@@ -64,6 +64,7 @@ Each of these Code_ID's are associated with the following files (where xx repres
 |9| xxKS_Setup | Set up file including model, priors, reference to data  |  Kolmogorov-Smirnov | NA |
 |10| xxKS_Inference | ABC-SMC algorithm  | Kolmogorov-Smirnov  | Target acceptance probability |
 |11| xxKS_ABCE_Inference |  ABC-SMC algorithm |  Kolmogorov-Smirnov | Target acceptance threshold (chosen for comparison across ABC distances) |
+
 *For synthetic data studies S1, S5, S7, S9 only.
 
 Code for the ABC-SMC algorithm (adapted from https://github.com/ap-browning/internalisation), together with the homogeneous mathematical model and heterogeneous mathematical model are included in the following Modules:
