@@ -101,7 +101,7 @@ for ii=1:length(sim_id_vec)
     particles_per_cell = U*V;
 
     n_to_plot = 2000;
-    n_to_plot = 500;
+    # n_to_plot = 500;
 
     ######################################################################
     # 7 - Load output and find ABC particle with the maximum absolute error
