@@ -1,5 +1,5 @@
 #=
-    S7AD - Synthetic data  with low r (relative to K)
+    S5ADE - Synthetic data  with intermediate r (relative to K)
     Anderson-Darling ABC distance metric
     ABC-SMC Target acceptance threshold
 =#
@@ -33,7 +33,7 @@ isdir(filepath_save) || mkdir(filepath_save); # make folder to save figures if d
 ## 3 - Setup problem
 ##############################################################
 
-include("S7AD_Setup.jl")
+include("S5AD_Setup.jl")
 
 ##############################################################
 ##  4 - ABC SMC - target acceptance threshold
@@ -46,4 +46,4 @@ Random.seed!(1)
 ## 5 - Save results
 ##############################################################
 
-@save "Results/Files_syn/S7AD_ABCE_inference.jld2" P p_accept ε_seq
+@save "Results/Files_syn/S5ADE_inference.jld2" P p_accept ε_seq

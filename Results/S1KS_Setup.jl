@@ -142,10 +142,10 @@ dist = θ -> (disc ∘ model)(θ)
 
 # Prior
 prior = Product([
-    Uniform(1.0e-12,1.0e-0),# μr
-    Uniform(1.0e-12,1.0e-0), # σr
+    Uniform(1.0e-12,1.0e-4),# μr
+    Uniform(1.0e-12,1.0e-4), # σr
     Uniform(0.1,100.0), # μK
-    Uniform(0.01,200.0)  # σK
+    Uniform(0.01,100.0)  # σK
 ])
 
 # Parameter names
