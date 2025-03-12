@@ -55,7 +55,9 @@ fig_4_across_size=(37.5*mm_to_pts_scaling,25.0*mm_to_pts_scaling);
 # Loop through the different synthetic and experimental data sets
 #########################################
 
-for comparison_id = [1,2,3,101,102,103,104]
+# for comparison_id = 104
+# for comparison_id = [1,2,3,101,102,103,104]
+for comparison_id = 101
 
     #########################################
     # 4 - Load ABC-SMC results for the three different distances
@@ -355,7 +357,8 @@ for comparison_id = [1,2,3,101,102,103,104]
     t_eval = [0:0.5:24;]*3600;
     model_noiseless = θ -> simulate_model_noiseless(θ,θfixed,t_eval,param_dist;N=20_000);
     Random.seed!(1)
-    Nsamples_for_pred = 2000;    
+    # Nsamples_for_pred = 2000;  
+    Nsamples_for_pred = 200;    
     
     fig_inferred_predictions = plot(layout=grid(1,1),titlefont=fnt, guidefont=fnt, tickfont=fnt,xlab=L"t \ \mathrm{[hr]}",ylab=L"P(t)",size=fig_3_across_size,framestyle=:box)
 
@@ -405,7 +408,8 @@ for comparison_id = [1,2,3,101,102,103,104]
     # 9 - Plot  - Time series - Histogram of fluorescence data vs uncertainity in simulated data from posterior distribution
     #################################################  
 
-    nrandsampleshist = 2000;
+    # nrandsampleshist = 2000;
+    nrandsampleshist = 200;
 
     # plot properties - Histograms of fluorescence data - time course
     fig_data_hist2_size=fig_3_across_size;

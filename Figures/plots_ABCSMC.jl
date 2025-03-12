@@ -25,6 +25,7 @@ push!(LOAD_PATH,pwd() * "/Module/Model")
 
 using Inference
 using Model
+using Base.Threads
 using CSV
 using DataFrames
 using DataFramesMeta
@@ -122,7 +123,7 @@ fig_percentg99K_size = fig_2_across_size;
 # loadpath = "Results/Files_real/";
 # include(pwd() * "/Results/R1AD_Setup.jl")
 # savename = "Fig_R1ADE_Inference";
-# loadfilename = "R1ADE_inference"
+# loadfilename = "R1AD_ABCE_inference"
 # syndataindicator = 0;
 # θleastsquares = []; # r, K
 # fig_density_σK_xlim=[0,200];
@@ -285,7 +286,7 @@ ls_P_ylim = [0,20];
 # ls_P_yticks =[0,2];
 # ls_P_ylim = [0,3];
 
-###### Synthetic data set 9ADE - 
+# ###### Synthetic data set 9ADE - 
 # loadpath = "Results/Files_syn/";
 # include(pwd() * "/Results/S9AD_Setup.jl")
 # savename = "Fig_S9ADE_Inference";
@@ -294,12 +295,12 @@ ls_P_ylim = [0,20];
 # θknown = [3.86125e-7*100,4.56962e-7*100,10.0,2.0];
 # # θleastsquares = []; # r, K
 # # custom plot setting - density
-# fig_density_μr_xlim=[0,1.2e-4];
-# fig_density_σr_xlim=[0,1.2e-4];
+# fig_density_μr_xlim=[0,1e-4];
+# fig_density_σr_xlim=[0,1e-4];
 # fig_density_μK_xlim=[0,40];
 # fig_density_σK_xlim=[0,20];
-# fig_density_μr_xticks=([0,5e-5,10e-5],[0,5,10]);
-# fig_density_σr_xticks=([0,5e-5,10e-5],[0,5,10]);
+# fig_density_μr_xticks=([0,4e-5,8e-5],[0,4,8]);
+# fig_density_σr_xticks=([0,4e-5,8e-5],[0,4,8]);
 # fig_density_μK_xticks=[0,20,40];
 # fig_density_σK_xticks=[0,10,20];
 # # inferred r
@@ -580,7 +581,7 @@ end
 #################################################  
 
 # define lognormal distrbutions for r and K
-rdist(μr,σr)  = LogNormal(log(μr^2 / sqrt(σr^2 + μr^2)),sqrt(log(σr^2/μr^2 + 1)));
+rdist(μr,σr) = LogNormal(log(μr^2 / sqrt(σr^2 + μr^2)),sqrt(log(σr^2/μr^2 + 1)));
 Kdist(μK,σK) = LogNormal(log(μK^2 / sqrt(σK^2 + μK^2)),sqrt(log(σK^2/μK^2 + 1)));
 
 # define range to evaluate r and K
@@ -621,10 +622,6 @@ for i=1:length(r_eval)
     K_eval_quantilec[i] = quantile(K_save[:,i],0.975)
 end
 
-# r mean
-r_eval_mean = pdf.(rdist(ABCmean[1],ABCmean[2]),r_eval)
-# K mean
-K_eval_mean = pdf.(rdist(ABCmean[3],ABCmean[4]),K_eval)
 
 # initialise figure
 fig_inferreddistributions_r = plot(layout=grid(1,1),titlefont=fnt, guidefont=fnt, tickfont=fnt,legend=false,size=fig_inferreddistributions_r_size)
@@ -632,9 +629,9 @@ fig_inferreddistributions_K = plot(layout=grid(1,1),titlefont=fnt, guidefont=fnt
 # plot the quantilea, quantileb, quantilec
 plot!(fig_inferreddistributions_r,r_eval,r_eval_quantileb,ribbon=(r_eval_quantileb-r_eval_quantilea,r_eval_quantilec-r_eval_quantileb),label="95% interval",lw=0,xaxis=:identity,yaxis=:identity,frame=:box)
 plot!(fig_inferreddistributions_K,K_eval,K_eval_quantileb,ribbon=(K_eval_quantileb-K_eval_quantilea,K_eval_quantilec-K_eval_quantileb),label="95% interval",lw=0,frame=:box)
-# plot the mean
-plot!(fig_inferreddistributions_r,r_eval,r_eval_mean,lw=2,color=:black,xlab=L"r \ [\mathrm{m \ s}^{-1}]",label="mean",yticks=[],xticks=fig_inferreddistributions_r_xticks,xlim=fig_inferreddistributions_r_xlim,ylim=[0,ylims(fig_inferreddistributions_r)[2]])
-plot!(fig_inferreddistributions_K,K_eval,K_eval_mean,lw=2,color=:black,xlab=L"K \ [-]",label="mean",yticks=[],xticks=fig_inferreddistributions_K_xticks,xlim=fig_inferreddistributions_K_xlim,ylim=[0,ylims(fig_inferreddistributions_K)[2]])
+# plot the median
+plot!(fig_inferreddistributions_r,r_eval,r_eval_quantileb,lw=2,color=:black,xlab=L"r \ [\mathrm{m \ s}^{-1}]",label="mean",yticks=[],xticks=fig_inferreddistributions_r_xticks,xlim=fig_inferreddistributions_r_xlim,ylim=[0,ylims(fig_inferreddistributions_r)[2]])
+plot!(fig_inferreddistributions_K,K_eval,K_eval_quantileb,lw=2,color=:black,xlab=L"K \ [-]",label="mean",yticks=[],xticks=fig_inferreddistributions_K_xticks,xlim=fig_inferreddistributions_K_xlim,ylim=[0,ylims(fig_inferreddistributions_K)[2]])
 # display
 display(fig_inferreddistributions_r)
 display(fig_inferreddistributions_K)
@@ -668,7 +665,7 @@ if savename == "Fig_S1ADE_Inference"
     #### Plot inset for r 
     fig_inferreddistributions_r_inset = plot(layout=grid(1,1),titlefont=fnt_inset, guidefont=fnt_inset, tickfont=fnt_inset,legend=false,size = (50*mm_to_pts_scaling,30*mm_to_pts_scaling))
     plot!(fig_inferreddistributions_r_inset,r_eval,r_eval_quantileb,ribbon=(r_eval_quantileb-r_eval_quantilea,r_eval_quantilec-r_eval_quantileb),label="95% interval",lw=0,xaxis=:identity,yaxis=:identity,frame=:box) #xaxis=:log,yaxis=:log)
-    plot!(fig_inferreddistributions_r_inset,r_eval,r_eval_mean,lw=2,color=:black,xlab=L"r \ [\mathrm{m \ s}^{-1}]",label="mean",yticks=[],xticks=[0,0.05e-8,0.1e-8],xlim=[0,0.15e-8],ylim=[0,ylims(fig_inferreddistributions_r)[2]])
+    plot!(fig_inferreddistributions_r_inset,r_eval,r_eval_quantileb,lw=2,color=:black,xlab=L"r \ [\mathrm{m \ s}^{-1}]",label="mean",yticks=[],xticks=[0,0.05e-8,0.1e-8],xlim=[0,0.15e-8],ylim=[0,ylims(fig_inferreddistributions_r)[2]])
     plot!(fig_inferreddistributions_r_inset,r_eval,r_eval_known,lw=2,color=:orange,ls=:dash)
     display(fig_inferreddistributions_r_inset)
     savefig(fig_inferreddistributions_r_inset,filepath_save * "fig_inferreddistributions_r_inset" * ".pdf")
@@ -685,7 +682,7 @@ if lsdataindicator == 1
             # plot the quantilea, quantileb, quantilec
             plot!(fig_inferreddistributions_r_ls,r_eval,r_eval_quantileb,ribbon=(r_eval_quantileb-r_eval_quantilea,r_eval_quantilec-r_eval_quantileb),label="95% interval",lw=0,xaxis=:identity,yaxis=:identity,frame=:box)
             # plot the mean
-            plot!(fig_inferreddistributions_r_ls,r_eval,r_eval_mean,lw=2,color=:black,xlab=L"r \ [\mathrm{m \ s}^{-1}]",label="mean",yticks=[],xticks=([0.0, 4.0e-8, 8.0e-8], [0, 4, 8]),xlim=[0,10e-8],ylim=[0,ylims(fig_inferreddistributions_r)[2]])
+            plot!(fig_inferreddistributions_r_ls,r_eval,r_eval_quantileb,lw=2,color=:black,xlab=L"r \ [\mathrm{m \ s}^{-1}]",label="mean",yticks=[],xticks=([0.0, 4.0e-8, 8.0e-8], [0, 4, 8]),xlim=[0,10e-8],ylim=[0,ylims(fig_inferreddistributions_r)[2]])
             plot!(fig_inferreddistributions_r_ls,r_eval,r_eval_known,lw=2,color=:orange,ls=:dash)
             vline!(fig_inferreddistributions_r_ls,[ls_xopt[1]],lw=2,ls=:dash,color=:magenta,legend=false)
             display(fig_inferreddistributions_r_ls)
@@ -696,7 +693,7 @@ if lsdataindicator == 1
         # plot the quantilea, quantileb, quantilec
         plot!(fig_inferreddistributions_r_ls,r_eval,r_eval_quantileb,ribbon=(r_eval_quantileb-r_eval_quantilea,r_eval_quantilec-r_eval_quantileb),label="95% interval",lw=0,xaxis=:identity,yaxis=:identity,frame=:box)
         # plot the mean
-        plot!(fig_inferreddistributions_r_ls,r_eval,r_eval_mean,lw=2,color=:black,xlab=L"r \ [\mathrm{m \ s}^{-1}]",label="mean",yticks=[],xticks=([0.0, 4.0e-8, 8.0e-8], [0, 4, 8]),xlim=[0,10e-8],ylim=[0,ylims(fig_inferreddistributions_r)[2]])
+        plot!(fig_inferreddistributions_r_ls,r_eval,r_eval_quantileb,lw=2,color=:black,xlab=L"r \ [\mathrm{m \ s}^{-1}]",label="mean",yticks=[],xticks=([0.0, 4.0e-8, 8.0e-8], [0, 4, 8]),xlim=[0,10e-8],ylim=[0,ylims(fig_inferreddistributions_r)[2]])
         vline!(fig_inferreddistributions_r_ls,[ls_xopt[1]],lw=2,ls=:dash,color=:magenta,legend=false)
         display(fig_inferreddistributions_r_ls)
         savefig(fig_inferreddistributions_r_ls,filepath_save * "fig_inferreddistributions_r_withleastsquares" * ".pdf")
@@ -739,7 +736,7 @@ model_noiseless([X_sim_param_rand[1][1]
 @time P_save = [model_noiseless([X_sim_param_rand[i][1]
                                 X_sim_param_rand[i][2]
                                 X_sim_param_rand[i][3]
-                                X_sim_param_rand[i][4]]) for i=1:2000];
+                                X_sim_param_rand[i][4]]) for i=1:200];
 
 # calculate quantiles for each time point
 P_pred_quantilea = zeros(length(t_eval));
@@ -825,7 +822,7 @@ savefig(fig_data_hist2_cellonly_med,filepath_save * "fig_data_hist2_cellonly_med
 
 
 ### timepoints - NO median, NO prediction intervals
-for i=1:lendatafiles
+@time for i=1:lendatafiles
     fig_data_hist2= plot(layout=grid(1,1),titlefont=fnt, guidefont=fnt, tickfont=fnt,xlab=L"S \ \mathrm{[AU]}",xlim=(0,1000),size=fig_data_hist2_size,frame=:box)
     data_this_loop = X[i]; 
     histogram!(fig_data_hist2,data_this_loop,xlim=fig_data_hist2_xlim,ylim=fig_data_hist2_ylim,label="Raw",normalize=:pdf,color=:lightgray, bins = 0:20:(round(maximum(data_this_loop),digits=-3)),xticks=fig_data_hist2_xticks,yticks=fig_data_hist2_yticks,legend=false,lw=0.5)
@@ -835,7 +832,7 @@ end
 
 
 ###  timepoints - WITH median, NO prediction intervals
-for i=1:lendatafiles
+@time for i=1:lendatafiles
     fig_data_hist2= plot(layout=grid(1,1),titlefont=fnt, guidefont=fnt, tickfont=fnt,xlab=L"S \ \mathrm{[AU]}",xlim=(0,1000),size=fig_data_hist2_size,frame=:box)
     data_this_loop = X[i];
     histogram!(fig_data_hist2,data_this_loop,xlim=fig_data_hist2_xlim,ylim=fig_data_hist2_ylim,label="Raw",normalize=:pdf,color=:lightgray, bins = 0:20:(round(maximum(data_this_loop),digits=-3)),xticks=fig_data_hist2_xticks,yticks=fig_data_hist2_yticks,legend=false,lw=0.5)
@@ -846,7 +843,7 @@ end
 
 
 ### timepoints - NO median, WITH prediction intervals
-for i=1:lendatafiles
+@time for i=1:lendatafiles
     fig_data_hist2= plot(layout=grid(1,1),titlefont=fnt, guidefont=fnt, tickfont=fnt,xlab=L"S \ \mathrm{[AU]}",xlim=(0,1000),size=fig_data_hist2_size,frame=:box)
     data_this_loop = X[i];
     histogram!(fig_data_hist2,data_this_loop,xlim=fig_data_hist2_xlim,ylim=fig_data_hist2_ylim,label="Raw",normalize=:pdf,color=:lightgray, bins = 0:20:(round(maximum(data_this_loop),digits=-3)),xticks=fig_data_hist2_xticks,yticks=fig_data_hist2_yticks,lw=0.5)
@@ -896,10 +893,6 @@ function simulate_model_noiseless_withK(θ::Vector,θfixed::Vector,T::Vector,d::
 end
 model_noiseless_withK = θ -> simulate_model_noiseless_withK(θ,θfixed,T_K,param_dist;N=N_percentg99Ksims);
 
-# Sample the statistical hyperparameters 10^3 times
-nrandsampleshist= 100;
-Random.seed!(1)
-
 # specify the times to solve
 T_K = [0:0.5:24;]*3600;
 
@@ -909,7 +902,7 @@ percentg50Kcount = zeros(length(T_K)); #
 percentg90Kcount = zeros(length(T_K)); # 
 percentg95Kcount = zeros(length(T_K)); # 
 percentg99Kcount = zeros(length(T_K)); # 
-for i=1:nrandsampleshist
+@time for i=1:nrandsampleshist
     Random.seed!(i)    
     modeleval = model_noiseless_withK(X_sim_param_rand[i]);
     for k=1:length(T_K)
