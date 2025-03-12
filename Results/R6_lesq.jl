@@ -60,7 +60,7 @@ isdir(filepath_save) || mkdir(filepath_save); # make folder to save figures if d
 ## 4 - Setup problem
 ##############################################################
 
-include("R6_Setup.jl")
+include("R6AD_Setup.jl")
 
 ##############################################################
 ## 5 - Plot histograms of the flow data
