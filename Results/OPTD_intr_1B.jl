@@ -21,6 +21,10 @@ using Model
 using JLD2
 using LinearAlgebra
 using Random
+using StatsBase
+using Base.Threads
+
+println("Threads.nthreads = " * string(Threads.nthreads()))
 
 ##############################################################
 ## 2 - Setup location to save files
@@ -52,12 +56,12 @@ J=20;
 
 # High Performance Computing variables
 println("ARGS ....")
-HPC_loop_id = 1;
-# HPC_loop_id = parse(Int,ARGS[1])
+# HPC_loop_id = 1;
+HPC_loop_id = parse(Int,ARGS[1])
 println(HPC_loop_id)
 
 
-N=10_000; # number of data sets per time point (for this HPC loop)
+N=50_000; # number of data sets per time point (for this HPC loop)
 
 # initialise variables to save outputs
 discrepancy = zeros(N,J,length(T))

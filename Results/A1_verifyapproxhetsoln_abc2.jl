@@ -159,8 +159,8 @@ for ii=1:length(sim_id_vec)
         K = LogNormal(log(μK^2 / sqrt(σK^2 + μK^2)),sqrt(log(σK^2/μK^2 + 1)));
 
         total_cells = 100_000;
-        Ncells_sample = 1000;
-        # Ncells_sample = 20_000;
+        # Ncells_sample = 1000;
+        Ncells_sample = 20_000;
 
         # sample lognormal distributions for r and K
         Random.seed!(1)
@@ -172,13 +172,13 @@ for ii=1:length(sim_id_vec)
         ######################################################################
 
         function solve_ode_model_independent(t,θ::Vector,θfixed::Vector)
-        r,P = θ;
-        S,V,C,U = θfixed;
-        if P == V*U
-            (C*r*S*U^2*V*t)/(P + C*r*S*U*t)
-        else
-            V*U .* (1 - (V*U - P)./(V*U - P*exp(-(r*C*S*(U*V - P)*t)/(P*V))  ) )
-        end
+            r,P = θ;
+            S,V,C,U = θfixed;
+            if P == V*U
+                (C*r*S*U^2*V*t)/(P + C*r*S*U*t)
+            else
+                V*U .* (1 - (V*U - P)./(V*U - P*exp(-(r*C*S*(U*V - P)*t)/(P*V))  ) )
+            end
         end
 
         ######################################################################
@@ -187,12 +187,12 @@ for ii=1:length(sim_id_vec)
 
         ## Plot - total concentration comparison
         function nanoodes_concpercell(du, u, p, t)
-        # time evolution of total number of particles in the solution
-        du[1]= -(1/V)*(S/Ncells_sample)*u[1]*sum([(r_sample[j-1]*(K_sample[j-1] - u[j])/K_sample[j-1]) for j=2:(Ncells_sample+1)]);
-        # time evolution of the number of particles per cell
-        for j=2:(Ncells_sample+1)
-            du[j] = S*(r_sample[j-1]*(K_sample[j-1] - u[j])/K_sample[j-1])*u[1];
-        end
+            # time evolution of total number of particles in the solution
+            du[1]= -(1/V)*(S/Ncells_sample)*u[1]*sum([(r_sample[j-1]*(K_sample[j-1] - u[j])/K_sample[j-1]) for j=2:(Ncells_sample+1)]);
+            # time evolution of the number of particles per cell
+            for j=2:(Ncells_sample+1)
+                du[j] = S*(r_sample[j-1]*(K_sample[j-1] - u[j])/K_sample[j-1])*u[1];
+            end
         end
 
         u0 = [particles_per_cell/V;zeros(Ncells_sample)] # initial condition
@@ -225,7 +225,6 @@ for ii=1:length(sim_id_vec)
         plot!(fig_concentrationpercell_comparison2,sol.t ./3600,mean.([[(particles_per_cell  - solve_ode_model_independent(sol.t[ti],[r_sample[j-1],K_sample[j-1]],θfixed)) for j=2:Ncells_sample+1] for ti=1:length(sol.t) ]),ls=:dash,color=:red,lw=3,ylim=(0,100))
         display(fig_concentrationpercell_comparison2)
         savefig(fig_concentrationpercell_comparison2,filepath_save * "fig_concentrationpercell_sim" * string(i) * ".pdf")
-
 
         ######################################################################
         ####### 15 - Plots - Compare P(t;u from independent model) to P(t; u from full model)

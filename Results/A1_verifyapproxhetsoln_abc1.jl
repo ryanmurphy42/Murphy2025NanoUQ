@@ -26,6 +26,7 @@ push!(LOAD_PATH,pwd() * "/Module/Model")
 
 using Inference
 using Model
+using Base.Threads
 using DifferentialEquations 
 using Sundials
 using Random
@@ -59,6 +60,7 @@ elseif parse(Int,ARGS[1]) == 6
 elseif parse(Int,ARGS[1]) == 7
     sim_id_vec =["R6"]
 end
+
 
 
 for ii=1:length(sim_id_vec)
@@ -100,10 +102,11 @@ for ii=1:length(sim_id_vec)
     σK_vec = [P[i].θ[4] for i=1:length(P)];
 
     particles_per_cell = U*V;
-    Nsamples =2000;
+    Nsamples =2000; # Number of ABC particles
 
     total_cells = 100_000;
-    Ncells_sample = 500;
+    # Ncells_sample = 500; # Number of simulated cells 
+    Ncells_sample = 20_000;  # Number of simulated cells 
 
     ######################################################################
     ####### 6 - Compute error for all particles
@@ -111,7 +114,7 @@ for ii=1:length(sim_id_vec)
 
     error_P = zeros(Nsamples);
 
-    for i=1:Nsamples
+    @threads for i=1:Nsamples
         
         println(i) # print sample id
 

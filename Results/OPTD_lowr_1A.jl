@@ -45,10 +45,10 @@ J=20; # number of data sets per time point
 
 # prior distribution for J=20 synthetic data sets
 prior_observed = Product([
-    Truncated(Normal(3.86125e-7*0.01,3.86125e-7*0.01/100),0,Inf), # μr
-    Truncated(Normal(4.56962e-7*0.01,4.56962e-7*0.01/100),0,Inf), # σr
-    Truncated(Normal(10.0,0.1),0,Inf), # μK
-    Truncated(Normal(2.0,0.02),0,Inf)  # σK
+    Truncated(Normal(3.86125e-7*0.01,3.86125e-7*0.01*0.1),0,Inf), # μr
+    Truncated(Normal(4.56962e-7*0.01,4.56962e-7*0.01*0.1),0,Inf), # σr
+    Truncated(Normal(10.0,10.0*0.1),0,Inf), # μK
+    Truncated(Normal(2.0,2.0*0.1),0,Inf)  # σK
 ])
 
 # initialise variable to save J=20 synthetic data sets
