@@ -1,6 +1,6 @@
 # Murphy et al. (2025) Quantifying biological heterogeneity in nano-engineered particle-cell interaction experiments
 
-Preprint: https://www.biorxiv.org/content/10.1101/2025.02.01.636020v1
+Preprint: https://www.biorxiv.org/content/10.1101/2025.02.01.636020
 
 This repository holds the key Julia code used to generate figures in the manuscript.
 
