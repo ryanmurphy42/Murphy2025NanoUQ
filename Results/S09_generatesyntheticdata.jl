@@ -1,5 +1,5 @@
 #=
-    S09 - Generate synthetic data based on R1
+    S09 - Generate synthetic data with high r (relative to K)
 =#
 
 # 1 - Load packages and modules
@@ -33,7 +33,7 @@ using LaTeXStrings
 ## 2 - Setup problem
 ##############################################################
 
-include("R1_Setup.jl")
+include("R1AD_Setup.jl")
 
 ##############################################################
 ## 3 - Synthetic parameters
@@ -64,7 +64,7 @@ F_cell = pmt_correctionfactor(voltage_cellonly,voltage_particleonly)*[rand(data_
 ##############################################################
 
 Random.seed!(3)
-Psyndeter = [simulate_model_noiseless_longt(θsyn,θfixed,[t]*3600,param_dist;N=samples_per_timepoint)[1] for t in T];
+Psyndeter = [simulate_model_noiseless(θsyn,θfixed,[t]*3600,param_dist;N=samples_per_timepoint)[1] for t in T];
 
 # plot boxplots P(t) from mathematical model
 fig_Psyndeter = plot(layout=grid(1,1),xlab=L"t \ \mathrm{[hours]}",ylab=L"P(t)",legend=false)

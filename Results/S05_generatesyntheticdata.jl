@@ -33,7 +33,7 @@ using LaTeXStrings
 ## 2 - Setup problem
 ##############################################################
 
-include("R1_Setup.jl")
+include("R1AD_Setup.jl")
 
 ##############################################################
 ## 3 - Synthetic parameters

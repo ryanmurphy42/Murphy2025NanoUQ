@@ -1,5 +1,5 @@
 #=
-    S07 - Generate synthetic data with low r (relative to K)
+    SR05 - Generate synthetic data with intermediate r (relative to K) - HOMOGENEOUS r,K - EXPERIMENTAL CONTROL DATA
 =#
 
 # 1 - Load packages and modules
@@ -39,10 +39,10 @@ include("R1AD_Setup.jl")
 ## 3 - Synthetic parameters
 ##############################################################
 
-μr=3.86125e-7*0.01;
-σr=4.56962e-7*0.01;
+μr=3.86125e-7;
+σr=0.0;
 μK=10.0;
-σK=2.0;
+σK=0.0;
 θsyn = [μr,σr,μK,σK];
 
 samples_per_timepoint = 20_000;
@@ -113,18 +113,18 @@ isdir(filepath_save) || mkdir(filepath_save); # make folder to save figures if d
 # ID | F_cell | 638 Red(Peak) (where 638 Red(Peak) is the same as F_cell)
 data_cellonly_syn = DataFrame(ID=1:samples_per_timepoint, F_cell = F_cell_t0, c= F_cell_t0);
 rename!(data_cellonly_syn,:c => "638 Red(Peak)")
-CSV.write(filepath_save * "data_cellonly_syn_S07.csv", data_cellonly_syn) # Export to csv
+CSV.write(filepath_save * "data_cellonly_syn_SR05.csv", data_cellonly_syn) # Export to csv
 
 #### Particle-only
 # ID | F_p | 638 Red(Peak) (where 638 Red(Peak) is the same as F_p)
 data_particleonly_syn = DataFrame(ID=1:samples_per_timepoint, F_p = F_p_t0, c= F_p_t0);
 rename!(data_particleonly_syn,:c => "638 Red(Peak)")
-CSV.write(filepath_save * "data_particleonly_syn_S07.csv", data_particleonly_syn) # Export to csv
+CSV.write(filepath_save * "data_particleonly_syn_SR05.csv", data_particleonly_syn) # Export to csv
 
 #### Cell-particle associations
 # ID | F_cell | F_p | Psyndeter | Psyn | 638 Red(Peak) (where 638 Red(Peak) is the same as Psyn)
 for i=1:length(T)
     data_syn = DataFrame(ID=1:samples_per_timepoint, F_cell = F_cell[i], F_p = F_p[i], Psyndeter = Psyndeter[i], Psyn = Psyn[i], c =Psyn[i] );
     rename!(data_syn,:c => "638 Red(Peak)")
-    CSV.write(filepath_save * "data_syn_S07_" * string(i) * ".csv", data_syn) # Export to csv
+    CSV.write(filepath_save * "data_syn_SR05_" * string(i) * ".csv", data_syn) # Export to csv
 end

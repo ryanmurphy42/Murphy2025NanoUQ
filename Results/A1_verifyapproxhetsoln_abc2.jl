@@ -211,7 +211,7 @@ for ii=1:length(sim_id_vec)
         t_int_eval_save_index = [findfirst(t_int_eval .== saveatvec[i]) for i=1:length(saveatvec)];
 
         ### Estimate  u(t) from many realisations of the independent model
-        U_int_eval = mean.([[(particles_per_cell  - solve_ode_model_independent(t,[r_sample[j],K_sample[j]],θfixed)) for j=1:length(r_sample)] for t=t_int_eval ])/V;
+        U_int_eval = mean.([[(particles_per_cell  - solve_ode_model_independent(t,[r_sample[j],K_sample[j]],θfixed)) for j=1:100] for t=t_int_eval ])/V;
 
         ### Estimate  P_i(t) from many realisations of the independent model
         I=[trapz(t_int_eval[1:t_int_eval_save_index[i]],U_int_eval[1:t_int_eval_save_index[i]]) for i=1:length(t_int_eval_save_index)];
