@@ -32,7 +32,7 @@ We generate synthetic data using the following code:
 |3| S05_generate_syntheticdata  | Intermediate r (relative to K) |
 |4| S09_generate_syntheticdata  | High r (relative to K) |
 
-### Synthetic data (exploring role of control data)
+### Synthetic data (exploring role of control data).
 | | Filename      | Description           | 
 | :---:    | :---: | :---: |
 |5| SP05_generate_syntheticdata | Low r (relative to K); heterogeneous model; synthetic control data. |
@@ -71,7 +71,7 @@ Code is included to reproduce results for the synthetic data studies and the exp
 |15| SR7** | Synthetic | Intermediate r (relative to K) | Homogeneous | Experimental |
 |16| SR9** | Synthetic | High r (relative to K) | Homogeneous | Experimental |
 
-** These data are only used for Supp. Sec. 2.3.
+** These data are only used for Supp. Sec. 2.3 exploring the role of control data.
 
 Each of these Code_ID's are associated with the following files (where xx represents the Code_ID from the above table).
 
