@@ -9,7 +9,7 @@ Please contact Ryan Murphy for any queries or questions.
 Code developed and run in Jan 2025 using:
 
 - Julia Version 1.9.3 (see https://julialang.org/downloads/ )
-- Julia packages: Base.Threads, Combinatorics, CSV, DataFrames, DataFramesMeta, DifferentialEquations, Distances, Distributions, HypothesisTests, Inference, Interpolations, JLD2, KernelDensity, LaTeXStrings, LinearAlgebra, Model, NLopt, Plots, Printf, Random, Statistics, StatsBase, StatsFuns, StatsPlots, Sundials, Threads, Trapz
+- Julia packages: Base.Threads, Combinatorics, CSV, DataFrames, DataFramesMeta, DifferentialEquations, Distances, Distributions, HypothesisTests, IniFile, Inference, Interpolations, JLD2, KernelDensity, LaTeXStrings, LinearAlgebra, Model, NLopt, Plots, Printf, Random, Statistics, StatsBase, StatsFuns, StatsPlots, Sundials, Threads, Trapz
 - This code utilises the ABC-SMC inference code from https://github.com/ap-browning/internalisation
 
 ## Data
@@ -32,22 +32,46 @@ We generate synthetic data using the following code:
 |3| S05_generate_syntheticdata  | Intermediate r (relative to K) |
 |4| S09_generate_syntheticdata  | High r (relative to K) |
 
+### Synthetic data (exploring role of control data)
+| | Filename      | Description           | 
+| :---:    | :---: | :---: |
+|5| SP05_generate_syntheticdata | Low r (relative to K); heterogeneous model; synthetic control data. |
+|6| SP07_generate_syntheticdata  | Intermediate r (relative to K); heterogeneous model; synthetic control data. |
+|7| SP09_generate_syntheticdata  | High r (relative to K); heterogeneous model;synthetic control data. |
+|8| SQ05_generate_syntheticdata  | Low r (relative to K); homogeneous model; synthetic control data. |
+|9| SQ07_generate_syntheticdata  | Intermediate r (relative to K); homogeneous model; synthetic control data. |
+|10| SQ09_generate_syntheticdata  | High r (relative to K); homogeneous model; synthetic control data. |
+|11| SR05_generate_syntheticdata  | Low r (relative to K); homogeneous model; experimental control data. |
+|12| SR07_generate_syntheticdata  | Intermediate r (relative to K);  homogeneous model; experimental control data. |
+|13| SR09_generate_syntheticdata  | High r (relative to K);  homogeneous model; experimental control data. |
+
+
 ## Code
 
 ### Parameter inference, identifiability analysis, and prediction
 
 Code is included to reproduce results for the synthetic data studies and the experimental data studies.
 
-| | Code_ID       | Synthetic/Experimental | Description           | 
-| :---:   | :---: | :---: | :---: |
-|1| R1 | Experimental | 150 nm PMA core-shell particles with THP-1 cells |
-|2| R5 | Experimental | 214 nm PMA-capsules with THP-1 cells |
-|3| R6 | Experimental | 633 nm PMA core-shell particles with THP-1 cells |
-|4| S1 | Synthetic | Based on data in R1 |
-|5| S7 | Synthetic | Low r (relative to K) |
-|6| S5 | Synthetic | Intermediate r (relative to K) |
-|7| S9 | Synthetic | High r (relative to K) |
+| | Code_ID       | Synthetic/Experimental | Description           | Model | Control data |
+| :---:   | :---: | :---: | :---: |  :---: |  :---: |
+|1| R1 | Experimental | 150 nm PMA core-shell particles with THP-1 cells | Heterogeneous | Experimental |
+|2| R5 | Experimental | 214 nm PMA-capsules with THP-1 cells | Heterogeneous | Experimental |
+|3| R6 | Experimental | 633 nm PMA core-shell particles with THP-1 cells | Heterogeneous | Experimental |
+|4| S1 | Synthetic | Based on data in R1 | Heterogeneous | Experimental |
+|5| S7 | Synthetic | Low r (relative to K) | Heterogeneous | Experimental |
+|6| S5 | Synthetic | Intermediate r (relative to K) | Heterogeneous | Experimental |
+|7| S9 | Synthetic | High r (relative to K) | Heterogeneous | Experimental |
+|8| SP5** | Synthetic | Low r (relative to K) | Heterogeneous | Synthetic |
+|9| SP7** | Synthetic | Intermediate r (relative to K) | Heterogeneous | Synthetic |
+|10| SP9** | Synthetic | High r (relative to K) | Heterogeneous | Synthetic |
+|11| SQ5** | Synthetic | Low r (relative to K) | Homogeneous | Synthetic |
+|12| SQ7** | Synthetic | Intermediate r (relative to K) | Homogeneous | Synthetic |
+|13| SQ9** | Synthetic | High r (relative to K) | Homogeneous | Synthetic |
+|14| SR5** | Synthetic | Low r (relative to K) | Homogeneous | Experimental |
+|15| SR7** | Synthetic | Intermediate r (relative to K) | Homogeneous | Experimental |
+|16| SR9** | Synthetic | High r (relative to K) | Homogeneous | Experimental |
 
+** These data are only used for Supp. Sec. 2.3.
 
 Each of these Code_ID's are associated with the following files (where xx represents the Code_ID from the above table).
 
@@ -66,6 +90,7 @@ Each of these Code_ID's are associated with the following files (where xx repres
 |11| xxKS_ABCE_Inference |  ABC-SMC algorithm |  Kolmogorov-Smirnov | Target acceptance threshold (chosen for comparison across ABC distances) |
 
 *For synthetic data studies S1, S5, S7, S9 only.
+*** SPx, SQx, SRx code_id's only include scripts for the Anderson-Darling ABC distance metric.
 
 Code for the ABC-SMC algorithm (adapted from https://github.com/ap-browning/internalisation), together with the homogeneous mathematical model and heterogeneous mathematical model are included in the following Modules:
 | | Module       | Filename | Description | 
